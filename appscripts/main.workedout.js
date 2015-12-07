@@ -13,11 +13,11 @@ require(
         var totaltime;      // computed when the game ends (Date.now() - starttime)
 
         // Start button with text on top
-        var startButton = paper.circle(300, 200, 40);
+        var startButton = paper.circle(300, 200, 30);
         var startText = paper.text(300, 200, 'START');
         startButton.attr({
             stroke: "black",
-            fill: "green"
+            fill: "light green"
         });
 
         // Hide for now, show it only when we are ready
@@ -28,6 +28,7 @@ require(
         var ready = function(){
             startButton.show();
             startText.show();
+           
         }
 
         // Called when the start button is clicked to hide the startButton and begin the game
@@ -40,7 +41,7 @@ require(
             starttime = Date.now();
             console.log("time = " + starttime);
 
-            moveSquare();
+            moveSquare();   
         }
 
         startButton.node.addEventListener('click', start);
@@ -55,8 +56,6 @@ require(
             'stroke-linejoin': 'round',
             'opacity': .75
         });
-
-
 
 
         // Return a random integer between m and n inclusive

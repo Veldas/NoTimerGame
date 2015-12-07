@@ -15,6 +15,7 @@ require(
         var pWidth = paper.canvas.offsetWidth;
         var pHeight = paper.canvas.offsetHeight;
 
+        // Setting the sound effects
         var sound = new Audio("resources/Background music.wav");
             sound.play();
             sound.loop = true;
@@ -64,7 +65,6 @@ require(
             console.log("time =" + starttime);
 
             moveSquare();
-
             gameTimer = setInterval(moveSquare, 3/difficulty*1000);
             setTimeout(endGame, 10000);
 
@@ -81,14 +81,6 @@ require(
             'border': "none"
         });
 
-
-
-        /*rect1.xrate=10;
-        rect1.yrate=10;
-        console.log("xrate is " + rect1.xrate +", and yrate is " + rect1.yrate);
-
-        rect1.animate();
-        */
 
         var randInt = function( m, n ){
             var range = n-m+1;
@@ -113,7 +105,18 @@ require(
 
                 console.log("Your score now is " + counter*10)
 
-        }
+            rect1.xpos += rect1.xrate;
+            rect1.ypos += rect1.yrate; 
+
+            rect1.attr({'x': rect1.xpos, 'y': rect1.ypos}); 
+            scoreNum.attr({text:clickCount});
+
+            if (rect1.xpos > pWidth) {rect1.xrate = -rect1.xrate;};
+            if (rect1.ypos > pHeight) {rect1.yrate = - rect1.yrate};
+            if (rect1.xpos < 0) {rect1.xrate = -rect1.xrate;};
+            if (rect1.ypos < 0) {rect1.yrate = - rect1.yrate};
+
+        };
 
         var addClick = function(){
             var dingSound = new Audio("resources/ding.wav");
@@ -129,7 +132,7 @@ require(
             var difficulty = parseInt(prompt("Choose your difficulty level: 1 being easiest, 10 being most difficult"));
             if (difficulty != null) {}
 
-        }
+        };
         
                 
         rect1.node.addEventListener('click', addClick, function(){
